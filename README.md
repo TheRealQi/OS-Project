@@ -23,15 +23,15 @@ This project was done as a partial requirement for the ECEN-427 course @Nile Uni
 
 ## Task 1: Initial Utilities:
 **In the first task we were asked to make 4 different C tools:**
-1. wcat 
-2. wgrep
-3.	wzip
-4.	wunzip
+1. Wcat 
+2. Wgrep
+3. Wzip
+4. Wunzip
 
 To accomplish these tools, we made use of some c functions that handles files operations:
  - **fopen/fclose:** These 2 functions are used to open/close files through a file pointer.  
- - **getline:** Similar to fgets, which is used to read an entire line from a file, every time its invoked it reads the next line. 
- -- **Note:** We opted to use getline instead of fgets to dynamically allocate the line buffer according to the length of each line in a file.
+ - **getline:** Similar to fgets, which is used to read an entire line from a file, every time its invoked it reads the next line.
+ 	- **Note:** We opted to use getline instead of fgets to dynamically allocate the line buffer according to the length of each line in a file.
  - **getc:** Reads a character from a file, every time its invoked it reads the next character. 
  - **fwrite:** Used to write into a file.
  - **fread:** Used to read raw data from a file.
@@ -124,11 +124,11 @@ To accomplish this, the tool goes through the given binary compressed file chara
 
 ### Tool arguments and file considerations:
 1. **Number of arguments**: 
-					1. **Wcat**: Accepts 1 or more arguments, should be the path of text files.
-					2. **Wgrep**: Accepts  1 or 2 arguments, the keyword and/or the file name              (if the file name were not given the tool will instead read from stdin).
-					3. **Wzip**: Accepts 1 or more arguments, the text files to be compressed.
-					4. **Wunzip**: Accepts 1 or more arguments, the text files to be uncompressed.
--- **Note:** The number of arguments (argc) specified doesn't include the tool invocation name (ex: ./wcat). Additionally, if wrong number of arguments were given an error will be returned. 
+	1. **Wcat**: Accepts 1 or more arguments, should be the path of text files.
+	2. **Wgrep**: Accepts  1 or 2 arguments, the keyword and/or the file name (if the file name were not given the tool will instead read from stdin).
+	3. **Wzip**: Accepts 1 or more arguments, the text files to be compressed.
+	4. **Wunzip**: Accepts 1 or more arguments, the text files to be uncompressed.
+	- **Note:** The number of arguments (argc) specified doesn't include the tool invocation name (ex: ./wcat). Additionally, if wrong number of arguments were given an error will be returned. 
 2. **Invalid Files:** If either input/output files were given as arguments but for some reason they couldn't be opened an error will be returned.
 
 ## Task 2: Initial Reverse:
@@ -180,7 +180,7 @@ void traverseLL(struct Node *head, FILE *fp) {
 ```
 ### Tool arguments and file considerations:
 1. **Number of arguments**:  The tool only takes up to 2 arguments, if it takes more than 3 it will return an error. Moreover, if either input/output files were not given as an argument stdin/stdout will be used instead.
--- **Note:** The number of arguments (argc) specified doesn't include the tool invocation name (ex: ./reverse).
+	- **Note:** The number of arguments (argc) specified doesn't include the tool invocation name (ex: ./reverse).
 3. **Input and Output files must be different**: The input and output files can't be same, to check for this we compared the files serial numbers using st_ino from the stat library, if they are the same an error will be returned.
 4. **Invalid Files:** If either input/output files were given as arguments but for some reason they couldn't be opened an error will be returned.
 ## Task 3: Process Shell
