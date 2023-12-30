@@ -66,7 +66,7 @@ In this tool we were asked to make a file compression tool that uses a simple fo
 **Example:**
 >aaaaaaaaaabbbb
 
-**Becomes is compressed into this:**
+**Is compressed into this:**
  >10a4b
 
 To accomplish this the tool goes through several steps:
