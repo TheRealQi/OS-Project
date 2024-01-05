@@ -23,12 +23,12 @@ int main() {
         settickets(30);
         for (;;);
     }
-    printf(1,"Process 10, Process 20, Process 30\n");
+    printf(1,"i, Process10, Process20, Process30\n");
     sleep(1);
-    //int j = 1;
+    int j = 0;
     while (1) {
-    	//printf(1, "%d,", j);
-    	//j++;
+    	printf(1, "%d,", j);
+    	j++;
         getpinfo(&stat);
         for (int i = 0; i < NPROC; i++) {
             if (stat.pid[i] == pid1) {

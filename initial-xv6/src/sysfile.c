@@ -80,11 +80,6 @@ sys_read(void)
   return fileread(f, p, n);
 }
 
-int sys_getreadcount(void)
-{
-  return readcount;
-}
-
 int
 sys_write(void)
 {

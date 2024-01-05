@@ -9,6 +9,13 @@
 
 extern int readcount;
 
+
+int 
+sys_getreadcount(void)
+{
+  return readcount;
+}
+
 int
 sys_fork(void)
 {
