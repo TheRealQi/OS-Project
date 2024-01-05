@@ -3,7 +3,6 @@ This project was done as a partial requirement for the ECEN-427 course @Nile Uni
 ### Team Members:
 - Mohamed Osama Shosha
 - SeifEldien Galal
-- Mohab Hassan Hanfy
 - Abdelrahman Yasser Zakaria
 - Karim Haitham Salama
 - Ali Mohamed Ahmed
@@ -14,7 +13,7 @@ This project was done as a partial requirement for the ECEN-427 course @Nile Uni
     - [x] wzip
     - [x] wunzip
 - [x] Task 2 - Initial Reverse
-- [ ] Task 3 - Process Shell (Unix Shell)
+- [X] Task 3 - Process Shell (Unix Shell)
 - [x] Task 4 - Initial xv6 (getreadcount System Call)
 - [x] Task 5 - Scheduling Algorithm (Lottery)
     - [x] settickets System Call
