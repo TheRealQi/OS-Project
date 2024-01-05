@@ -125,19 +125,27 @@ To accomplish this, the tool goes through the given binary compressed file chara
 	- **Note:** The number of arguments (argc) specified doesn't include the tool invocation name (ex: ./wcat). Additionally, if wrong number of arguments were given an error will be returned. 
 2. **Invalid Files:** If either input/output files were given as arguments but for some reason they couldn't be opened an error will be returned.
 ### Task 1 Tests:
+#### wcat test:
+![wcat_test!](images/wcat.png)
+#### wgrep test:
+![wgrep_test!](images/wgrep.png)
+#### wzip test:
+![wzip_test!](images/wzip.png)
+#### wunzip test:
+![wunzip_test!](images/wunzip.png)
 
 ## Task 2: Initial Reverse:
 In the second task we were asked to make a simple tool called "reverse". Reverse is a simple tool that reads a text file and prints out its content but in reverse order.
 
 To accomplish this, we had to use a dynamic data structure that stores the contents of the file in a LIFO fashion, thus we used a linked list. We implemented a linked list such that whenever we insert a new line (node) it will be inserted at the beginning, which will become our new head. Furthermore, when we traverse through the linked list it will start from the head of the list till the tail of the list.
 
-*Using test case 6 as an example:*
+*Using  case 6 as an example:*
 File contents:
 > hello
 > this
 > is
 > a
-> test
+> 
 
 To store these lines in our linked list we are going to use "readline()" inside a while loop to iterate over all the lines.
 ```
@@ -154,10 +162,10 @@ void createLLNodes(struct Node **head, FILE *fp) {
 ```
 ```mermaid
 graph LR
-	test-->a-->is-->this-->hello-->null
+	-->a-->is-->this-->hello-->null
 ```
 To traverse our list and print into our designated file, we will iterate normally from the head till the tail which will return them in the following order:
-> test
+> 
  a
  is 
  this
@@ -179,6 +187,8 @@ void traverseLL(struct Node *head, FILE *fp) {
  2. **Input and Output files must be different**: The input and output files can't be same, to check for this we compared the files serial numbers using st_ino from the stat library, if they are the same an error will be returned.
  3. **Invalid Files:** If either input/output files were given as arguments but for some reason they couldn't be opened an error will be returned.
 ### Task 2 Tests:
+#### reverse test:
+![reverse_test!](images/reverse.png)
 ## Task 3: Process Shell
 In the third task we were asked to make a CLI/shell called wish. Wish is a simple shell, but somewhat similar to the one we use in unix/linux. The specifications were as follows:
  1. There are 2 modes to run in, interactive and batch. In the interactive mode, wish is invoked without any arguments "./wish" and runs repeatedly, until the user enters "exit", and prompts the user to enter their commands. In batch mode, wish is invoked with a single argument, a file that contains several commands that wish will execute.
@@ -290,6 +300,7 @@ void executeCommand(char *commands) {
             }
 ```
 ### Task 3 Tests:
+![wish test!](images/wish.png)
 
 ## Task 4: Initial xv6 (getreadcount System Call)
 In the fourth task we were asked to implement a simple system call to the xv6 OS, getreadcount(). This system call returns a counter of how many times the read() system call was called by all processes since the kernel was booted. To implement it we are required to edit some files in xv6:
@@ -300,7 +311,7 @@ In the fourth task we were asked to implement a simple system call to the xv6 OS
  5. sysfile.c: Contains the implementation of files related system calls, which includes the read system call. In here we will edit the read system call to increment the counter every time it is called.
  6. sysproc.c: Contains the implementation of process related system calls, which will also include our system call implementation. In here we will add the actual implementation of our system call alongside a counter linked to the counter defined in sysfile.c.
 ### Task 4 Tests:
-
+![sys_call_getreadcount test!](images/getreadcount_system_call.png)
 ## Task 5: Lottery Scheduling Algorithm
 In the fifth task we were asked to implement a lottery scheduler in place of the current one in xv6. 
 
@@ -317,3 +328,4 @@ In the fifth task we were asked to implement a lottery scheduler in place of the
 4. Finally, implementing the logic behind the lottery scheduler. Firstly, we will initialize 2 variables total-tickets and winner. Secondly, we will iterate over the process table and calculate the total number of tickets of runnable processes. Thirdly, we will generate a random number between 1 and the total number of tickets which will be our winning ticket. Fourthly, we will we will iterate through the process table and add the number of tickets to the counter and if the counter becomes greater than the winning ticket the process will be chosen to run.
 
 ### Task 5 Graph:
+![graph!](images/scheduler_graph.png)
