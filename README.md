@@ -305,11 +305,17 @@ void executeCommand(char *commands) {
 ## Task 4: Initial xv6 (getreadcount System Call)
 In the fourth task we were asked to implement a simple system call to the xv6 OS, getreadcount(). This system call returns a counter of how many times the read() system call was called by all processes since the kernel was booted. To implement it we are required to edit some files in xv6:
  1. user.h: Contains the function prototype to be used by user programs to invoke system calls. In here we will add our system call function prototype.
+[task4!](images/user.h.png)
  2. usys.S: Contains an assembly routine that takes the called the system calls by the user programs and run the corresponding trap routine. In here we will add our system call.
+[task4!](images/usys.s.png)
  3. syscall.c: Contains an array of function pointers to all system calls and their function prototype. In here we will add our system call to the array and its function prototype.
+[task4!](images/syscall.c.png)
  4. syscall.h: Contains the index of each system call in the array. In here we will add the index of our system call.
+[task4!](images/syscall.h.png)
  5. sysfile.c: Contains the implementation of files related system calls, which includes the read system call. In here we will edit the read system call to increment the counter every time it is called.
+[task4!](images/sysfile.c.png)
  6. sysproc.c: Contains the implementation of process related system calls, which will also include our system call implementation. In here we will add the actual implementation of our system call alongside a counter linked to the counter defined in sysfile.c.
+[task4!](images/sysproc.png)
 ### Task 4 Tests:
 ![sys_call_getreadcount test!](images/getreadcount_system_call.png)
 ## Task 5: Lottery Scheduling Algorithm
@@ -326,6 +332,6 @@ In the fifth task we were asked to implement a lottery scheduler in place of the
 	 2. The child process inherits the number of tickets from their parent.
 3.  Thirdly, we needed a random number generator to generate a number from 1 to total number of tickets. Therefore, we used an altered version of the random number generator made by Takuji Nishimura and Makoto Matsumoto.
 4. Finally, implementing the logic behind the lottery scheduler. Firstly, we will initialize 2 variables total-tickets and winner. Secondly, we will iterate over the process table and calculate the total number of tickets of runnable processes. Thirdly, we will generate a random number between 1 and the total number of tickets which will be our winning ticket. Fourthly, we will we will iterate through the process table and add the number of tickets to the counter and if the counter becomes greater than the winning ticket the process will be chosen to run.
-
+[task5!](images/proc.c.png)
 ### Task 5 Graph:
 ![graph!](images/scheduler_graph.png)
