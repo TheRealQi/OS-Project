@@ -346,10 +346,11 @@ scheduler(void)
       totalTickets  += p->tickets;
     }
     
-    
     // Generate a random ticket to be a winner
     if (totalTickets != 0){
-      winner = random_at_most(totalTickets);
+      while(winner == 0){
+        winner = random_at_most(totalTickets);
+      }
     }
     seed++;
     // Loop over process table looking for process to run.
@@ -367,12 +368,11 @@ scheduler(void)
       // before jumping back to us.
       c->proc = p;
       switchuvm(p);
-      // cprintf("\nProcess %d is running..\n", p->pid);
       p->state = RUNNING;
       p->inuse = 1;
-      int x = ticks;
       swtch(&(c->scheduler), p->context);
-      p->ticks += ticks - x;
+      p->ticks++;
+      //cprintf("\nProcess %d is running... with %d tickets... with winner %d and ticks %d\n", p->pid, p->tickets, winner, p->ticks);
       switchkvm();
       p->inuse = 0;
       // Process is done running for now.
@@ -416,7 +416,6 @@ yield(void)
 {
   acquire(&ptable.lock);  //DOC: yieldlock
   myproc()->state = RUNNABLE;
-  myproc()->inuse = 0;
   sched();
   release(&ptable.lock);
 }
@@ -577,7 +576,6 @@ settickets(int number)
 int 
 getpinfo(struct pstat* ps)
 {
-  argptr(0,(void*)&ps,sizeof(*ps));
   struct proc* proc;
   
   int i = 0;
