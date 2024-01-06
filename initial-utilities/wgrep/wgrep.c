@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX_LENGTH 10000
-
 int main(int argc, char *argv[]) {
     if (argc == 1) { // Fewer than 2 arguments error handling
         printf("wgrep: searchterm [file ...]\n");
@@ -17,22 +15,23 @@ int main(int argc, char *argv[]) {
             }
         }
         free(buffer); // Free buffer's allocated memory
-    } else if (argc == 3) {
-        FILE *fp; // File pointer
-        fp = fopen(argv[2], "r");
-        if (fp == NULL) { // If file cannot be opened error handling
-            printf("wgrep: cannot open file\n");
-            exit(1);
-        }
-        char *buffer; // Buffer to store line
-        size_t len = 0; // Length of line (will be dynamically changed by getline)
-        while (getline(&buffer, &len, fp) != -1) {
-            if (strstr(buffer, argv[1])) {
-                printf("%s", buffer);
+    } else {
+        for (int i = 2; i < argc; i++) {
+            FILE *fp; // File pointer
+            fp = fopen(argv[i], "r");
+            if (fp == NULL) { // If file cannot be opened error handling
+                printf("wgrep: cannot open file\n");
+                exit(1);
             }
+            char *buffer; // Buffer to store line
+            size_t len = 0; // Length of line (will be dynamically changed by getline)
+            while (getline(&buffer, &len, fp) != -1) {
+                if (strstr(buffer, argv[1])) {
+                    printf("%s", buffer);
+                }
+            }
+            fclose(fp); // Close file
         }
-        free(buffer); // Free buffer's allocated memory
-        fclose(fp); // Close file
     }
     return 0;
 }
